@@ -14,8 +14,10 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
-
-	Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
+	if (m_bDebugmode)
+	{
+		Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
+    }
 }
 
 void PlayScene::update()
@@ -113,12 +115,14 @@ void PlayScene::handleEvents()
 		TheGame::Instance()->quit();
 	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
+	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_H)
+
+	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_1))
 	{
 		TheGame::Instance()->changeSceneState(START_SCENE);
 	}
 
-	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
+	if(EventManager::Instance().isKeyDown(SDL_SCANCODE_2))
 	{
 		TheGame::Instance()->changeSceneState(END_SCENE);
 	}
@@ -126,6 +130,8 @@ void PlayScene::handleEvents()
 
 void PlayScene::start()
 {
+
+	m_bDebugmode = false;
 	// Plane Sprite
 	m_pPlaneSprite = new Plane();
 	addChild(m_pPlaneSprite);

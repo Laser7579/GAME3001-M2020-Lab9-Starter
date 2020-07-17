@@ -28,7 +28,7 @@ private:
 	bool m_playerFacingRight;
 
 	Obstacle* m_pObstacle;
-	
+	m_bDebugmode;
 };
 
 #endif /* defined (__PLAY_SCENE__) */
